@@ -1,0 +1,27 @@
+Project Plan
+1. Prototype (Moving)
+  $-Triangle Boat
+    $-Player can move boat with arrow keys
+  -Reset Button to put boat back to start
+  $-Tile Generation
+    $-As boat moves from spawn point tiles will build in that direction
+  -Tile Removal
+    -As boat leaves a space for a long time, old tiles are removed
+
+2. Weapons, tile removal, rock spawn, health, timer,
+    targeting, 
+
+
+
+
+Boat spawn: (0,0)
+$-Build map around boat
+  $-Build 5x5 matrix around the boat (Lets go with 500x boxes)
+  -needs to be odd to have a center square.
+
+  **Maybe name tiles by their location, so that we can search for tiles.
+
+
+  -If boat collides with new tile, gather previously inhabited
+    tile and new collided tile. Compare the two to get direction the boat is traveling.
+    Check to see if tiles already inhabit that place. If there are missing tiles, fill them in.

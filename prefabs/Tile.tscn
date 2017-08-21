@@ -1,0 +1,113 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://images/water.png" type="Texture" id=1]
+
+[node name="0,0" type="Node2D"]
+
+z/z = -1
+
+[node name="Sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 0, 0, 6000, 6000 )
+
+[node name="-2000,-2000" type="Node2D" parent="."]
+
+transform/pos = Vector2( -2000, -2000 )
+
+[node name="-1000,-2000" type="Node2D" parent="."]
+
+transform/pos = Vector2( -1000, -2000 )
+
+[node name="-0,-2000" type="Node2D" parent="."]
+
+transform/pos = Vector2( 0, -2000 )
+
+[node name="1000,-2000" type="Node2D" parent="."]
+
+transform/pos = Vector2( 1000, -2000 )
+
+[node name="750,-2250" type="Node2D" parent="."]
+
+transform/pos = Vector2( 2000, -2000 )
+
+[node name="-2000,-1000" type="Node2D" parent="."]
+
+transform/pos = Vector2( -2000, -1000 )
+
+[node name="-1000,-1000" type="Node2D" parent="."]
+
+transform/pos = Vector2( -1000, -1000 )
+
+[node name="0,-1000" type="Node2D" parent="."]
+
+transform/pos = Vector2( 0, -1000 )
+
+[node name="1000,-1000" type="Node2D" parent="."]
+
+transform/pos = Vector2( 1000, -1000 )
+
+[node name="2000,-1000" type="Node2D" parent="."]
+
+transform/pos = Vector2( 2000, -1000 )
+
+[node name="-2000,0" type="Node2D" parent="."]
+
+transform/pos = Vector2( -2000, 0 )
+
+[node name="-1000,0" type="Node2D" parent="."]
+
+transform/pos = Vector2( -1000, 0 )
+
+[node name="0,0" type="Node2D" parent="."]
+
+[node name="1000,0" type="Node2D" parent="."]
+
+transform/pos = Vector2( 1000, 0 )
+
+[node name="2000,0" type="Node2D" parent="."]
+
+transform/pos = Vector2( 2000, 0 )
+
+[node name="-2000,1000" type="Node2D" parent="."]
+
+transform/pos = Vector2( -2000, 1000 )
+
+[node name="-1000,1000" type="Node2D" parent="."]
+
+transform/pos = Vector2( -1000, 1000 )
+
+[node name="0,1000" type="Node2D" parent="."]
+
+transform/pos = Vector2( 0, 1000 )
+
+[node name="1000,1000" type="Node2D" parent="."]
+
+transform/pos = Vector2( 1000, 1000 )
+
+[node name="2000,1000" type="Node2D" parent="."]
+
+transform/pos = Vector2( 2000, 1000 )
+
+[node name="-2000,2000" type="Node2D" parent="."]
+
+transform/pos = Vector2( -2000, 2000 )
+
+[node name="-1000,2000" type="Node2D" parent="."]
+
+transform/pos = Vector2( -1000, 2000 )
+
+[node name="0,2000" type="Node2D" parent="."]
+
+transform/pos = Vector2( 0, 2000 )
+
+[node name="1000,2000" type="Node2D" parent="."]
+
+transform/pos = Vector2( 1000, 2000 )
+
+[node name="2000,2000" type="Node2D" parent="."]
+
+transform/pos = Vector2( 2000, 2000 )
+
+
