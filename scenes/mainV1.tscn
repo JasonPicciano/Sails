@@ -1,10 +1,26 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://scripts/envLoad.gd" type="Script" id=1]
-[ext_resource path="res://scripts/clock.gd" type="Script" id=2]
-[ext_resource path="res://scripts/boat.gd" type="Script" id=3]
-[ext_resource path="res://images/boat.png" type="Texture" id=4]
-[ext_resource path="res://scripts/weapons.gd" type="Script" id=5]
+[ext_resource path="res://scripts/stats.gd" type="Script" id=2]
+[ext_resource path="res://scripts/clock.gd" type="Script" id=3]
+[ext_resource path="res://images/Health0.png" type="Texture" id=4]
+[ext_resource path="res://images/Health1.png" type="Texture" id=5]
+[ext_resource path="res://images/Health2.png" type="Texture" id=6]
+[ext_resource path="res://images/Health3.png" type="Texture" id=7]
+[ext_resource path="res://images/Health4.png" type="Texture" id=8]
+[ext_resource path="res://images/Health5.png" type="Texture" id=9]
+[ext_resource path="res://scripts/boat.gd" type="Script" id=10]
+[ext_resource path="res://images/boat.png" type="Texture" id=11]
+[ext_resource path="res://scripts/weapons.gd" type="Script" id=12]
+
+[sub_resource type="SpriteFrames" id=3]
+
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -26,6 +42,7 @@ layer = 1
 offset = Vector2( 500, 300 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
+script/script = ExtResource( 2 )
 
 [node name="gameClock" type="Label" parent="CanvasLayer"]
 
@@ -41,19 +58,15 @@ text = "Test"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script/script = ExtResource( 2 )
+script/script = ExtResource( 3 )
 
-[node name="RayNode" type="Node2D" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="CanvasLayer"]
 
-editor/display_folded = true
-z/z = -5
-
-[node name="tileTesterRay" type="RayCast2D" parent="RayNode"]
-
-enabled = false
-cast_to = Vector2( 0, 50 )
-layer_mask = 1
-type_mask = 15
+transform/pos = Vector2( -410.134, -223.072 )
+transform/scale = Vector2( 0.8, 0.7 )
+frames = SubResource( 3 )
+animation = "default"
+frame = 5
 
 [node name="boat" type="RigidBody2D" parent="."]
 
@@ -62,7 +75,7 @@ shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 19
-collision/mask = 2
+collision/mask = 4
 mode = 0
 mass = 1.0
 friction = 1.0
@@ -78,14 +91,15 @@ velocity/linear = Vector2( 0, 0 )
 velocity/angular = 0.0
 damp_override/linear = -1.0
 damp_override/angular = -1.0
-script/script = ExtResource( 3 )
+script/script = ExtResource( 10 )
 
 [node name="boatSprite" type="Sprite" parent="boat"]
 
-texture = ExtResource( 4 )
+texture = ExtResource( 11 )
 
 [node name="Camera2D" type="Camera2D" parent="boat"]
 
+editor/display_folded = true
 anchor_mode = 1
 rotating = false
 current = true
@@ -103,6 +117,10 @@ drag_margin/top = 0.1
 drag_margin/right = 0.1
 drag_margin/bottom = 0.1
 
+[node name="Node2D" type="Node2D" parent="boat/Camera2D"]
+
+transform/pos = Vector2( -500, -250 )
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="boat"]
 
 build_mode = 0
@@ -118,7 +136,7 @@ shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = true
 collision/layers = 8
-collision/mask = 0
+collision/mask = 4
 mode = 3
 mass = 1.0
 friction = 1.0
@@ -134,7 +152,7 @@ velocity/linear = Vector2( 0, 0 )
 velocity/angular = 0.0
 damp_override/linear = -1.0
 damp_override/angular = -1.0
-script/script = ExtResource( 5 )
+script/script = ExtResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="boat/boatWeapons"]
 
@@ -145,8 +163,6 @@ _update_shape_index = 0
 [node name="sideR" type="Node2D" parent="boat"]
 
 transform/pos = Vector2( 100, 0 )
-
-[connection signal="body_enter" from="boat" to="boat" method="_on_boat_body_enter"]
 
 [connection signal="body_enter" from="boat/boatWeapons" to="boat/boatWeapons" method="_on_boatWeapons_body_enter"]
 

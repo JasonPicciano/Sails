@@ -17,6 +17,3 @@ func _fixed_process(delta):
 	if (BasicSeconds>5):
 		BasicSeconds = 0
 		
-		if(self.get_global_pos().distance_to(player.get_global_pos())>3000):
-			print("Rock Removed: ",get_name())
-			queue_free()

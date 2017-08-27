@@ -2,6 +2,7 @@ extends RigidBody2D
 
 var player
 var BasicSeconds = 0
+var health = 20
 
 func _ready():
 	set_fixed_process(true)
@@ -9,6 +10,9 @@ func _ready():
 
 func _fixed_process(delta):
 	BasicSeconds += delta
+	if (health<= 0):
+		queue_free()
+
 	if (BasicSeconds>.5):
 		BasicSeconds = 0
 		var playerPos = player.get_global_pos()
@@ -31,6 +35,9 @@ func moveEnemy(normal):
 	set_linear_velocity(-normal*60)
 	pass
 	
+func damage(type):
+	if type == "cannon":
+		health -= 10
 	
 func avoidObject(position, normal):
 	var angleModifier = randi()%2
@@ -45,6 +52,4 @@ func avoidObject(position, normal):
 		moveEnemy(normal.rotated(1))
 
 func _on_BaseEnemy_body_enter( body ):
-	#print("Enemy hit by: ", body.get_name(), body.get_parent().get_meta("type"))
-	
-	pass # replace with function body
+	print("Enemy hit by: ", body.get_name())

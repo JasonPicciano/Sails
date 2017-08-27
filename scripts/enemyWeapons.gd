@@ -23,6 +23,7 @@ func fireCannon(target):
 	newBullet.set_global_pos(boat)
 	newBullet.get_node("Sprite").set_rot(traj.angle()-59)
 	newBullet.set_linear_velocity(traj.normalized()*400)
+	newBullet.set_name("enemyCannonball")
 
 func _fixed_process(delta):
 	BasicSeconds += delta
@@ -30,9 +31,6 @@ func _fixed_process(delta):
 		var enemies = get_colliding_bodies()
 		BasicSeconds = 0
 		if (enemies.size()>0):
-			#print("SHOOT SHOOOT SHOOT: ", enemies[0].get_name())
-			#print("Number of colliding bodies: ", str(enemies.size()))
-			#print("Location of Collider: " , get_global_pos())
 			fireCannon(enemies[0].get_global_pos())
 		
 

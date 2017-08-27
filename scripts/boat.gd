@@ -25,6 +25,10 @@ func _input(event):
 		find_Nearest_Node()
 	if event.is_action_pressed("Spawn Enemy"):
 		get_node("/root/env").spawn_Enemy()
+	if event.is_action_pressed("HealthUp"):
+		get_node("/root/env/CanvasLayer").updateHealth(10)
+	if event.is_action_pressed("HealthDown"):
+		get_node("/root/env/CanvasLayer").updateHealth(-10)
 	
 	
 func _process(delta):
@@ -147,4 +151,9 @@ func check_Location():
 			get_node("/root/env").set_Tile(Xtile+1,Ytile+1)
 		if(corners[0]+corners[3]==2):
 			get_node("/root/env").set_Tile(Xtile-1,Ytile+1)
+
+func damage(type):
+	if type == "cannon":
+		get_node("/root/env/CanvasLayer").updateHealth(-20)
+
 

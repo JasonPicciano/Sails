@@ -23,6 +23,7 @@ func fireCannon(target):
 	newBullet.set_global_pos(boat)
 	newBullet.get_node("Sprite").set_rot(traj.angle()-59)
 	newBullet.set_linear_velocity(traj.normalized()*400)
+	newBullet.set_name("cannonball")
 
 func _fixed_process(delta):
 	BasicSeconds += delta
