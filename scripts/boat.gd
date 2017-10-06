@@ -7,6 +7,8 @@ var newTile
 var boatState
 var BasicSeconds = 0
 var boat
+var statArray
+
 
 func _ready():
 	set_meta("type","player")
@@ -14,6 +16,13 @@ func _ready():
 	set_process_input(true)
 	set_fixed_process(true)
 	boat = get_node("/root/env/boat")
+	statArray = {
+		"hul":0,
+		"spd":0,
+		"atk":0,
+		"agl":0,
+		"crw":0
+	}
 
 	var shape = RectangleShape2D.new()
 	shape.set_extents(Vector2(8, 20))
@@ -29,7 +38,21 @@ func _input(event):
 		get_node("/root/env/CanvasLayer").updateHealth(10)
 	if event.is_action_pressed("HealthDown"):
 		get_node("/root/env/CanvasLayer").updateHealth(-10)
-	
+	if event.is_action_pressed("hull"):
+		get_node("/root/env/CanvasLayer/testStats").updateStat("hull")
+		updateStat("hull")
+	if event.is_action_pressed("crew"):
+		get_node("/root/env/CanvasLayer/testStats").updateStat("crew")
+		updateStat("crew")
+	if event.is_action_pressed("attack"):
+		get_node("/root/env/CanvasLayer/testStats").updateStat("attack")
+		updateStat("attack")
+	if event.is_action_pressed("agility"):
+		get_node("/root/env/CanvasLayer/testStats").updateStat("agility")
+		updateStat("agility")
+	if event.is_action_pressed("speed"):
+		get_node("/root/env/CanvasLayer/testStats").updateStat("speed")
+		updateStat("speed")
 	
 func _process(delta):
 	BasicSeconds += delta
@@ -61,8 +84,8 @@ func _fixed_process(delta):
     var vel = get_linear_velocity()
 
     var right_vel = tf.x * tf.x.dot(vel)
-
-    var force = force_com - force_com * clamp(vel.length() / 400.0, 0.0, 1.0)
+	
+    var force = force_com - force_com*clamp(vel.length() / (400.0+(50*statArray.spd)), 0.0, 1.0)
     var steering_torque = steering_com
     if tf.y.dot(vel) < 0.0:
 
@@ -156,4 +179,16 @@ func damage(type):
 	if type == "cannon":
 		get_node("/root/env/CanvasLayer").updateHealth(-20)
 
-
+func updateStat(stat):
+	if(stat=="hull"):
+		statArray.hul+=1
+	elif(stat=="attack"):
+		statArray.atk+=1
+	elif(stat=="crew"):
+		statArray.crw+=1
+	elif(stat=="agility"):
+		statArray.agl+=1
+	elif(stat=="speed"):
+		statArray.spd+=1
+	else:
+		print("updateStat was given a bad string: " + stat)
